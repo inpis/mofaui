@@ -1,0 +1,1038 @@
+/*
+    Document   : override
+    Created on : <date>
+    Author     : <author>
+    Description:
+        This is where any of your application specific styles should be included
+*/
+/* Comman CSS Starts*/
+.border0{
+    border:none !important;
+}
+.paddingL0{
+    padding-left: 0px !important;
+}
+.paddingR0{
+    padding-right: 0px !important;
+}
+.paddingT0{
+    padding-top: 0px !important;
+}
+.paddingB0{
+    padding-bottom: 0px !important;
+}
+.padding0{
+    padding: 0px !important;
+}
+.marginL0{
+    margin-left: 0px !important;
+}
+.marginR0{
+    margin-right: 0px !important;
+}
+.marginT0{
+    margin-top: 0px !important;
+}
+.marginB0{
+    margin-bottom: 0px !important;
+}
+.margin0{
+    margin: 0px !important;
+}
+.marginB10{
+    margin-bottom: 10px !important;
+}
+.marginl15{
+    margin-left: 15px !important;
+}
+.marginT28{
+    margin-top: 28px;
+}
+.displayInline{
+    display: inline;
+}
+.defaultBtn button{
+    background-color: #523f56 !important;
+    background-image: none !important;
+    border: none !important;
+    font-family: 'Arial' !important;
+    line-height: normal !important;
+    color: #fff !important;
+    cursor: pointer !important;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 9px 10px;
+    height: 35px;
+}
+.BlueBtn button{
+    background-color: #3779b3 !important;
+}
+.BlueBtn.oj-hover button{
+    background-color: #4e8cc3 !important;
+}
+.defaultBtn.oj-hover button,
+.modalPopup .oj-dialog-header .oj-button.oj-hover button{
+    background-color: #7c5484 !important;
+    border-color: #7c5484 !important;
+    cursor: pointer;
+}
+.visibilityHidden{
+    visibility: hidden;
+}
+.contentCenter{
+    justify-content: center !important;
+}
+.width100{
+    width:100px;
+}
+.text-center{
+    text-align: center;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+.borderNone{
+    border: none;
+}
+body.oj-web-applayout-body{
+    overflow-y: auto;
+    background-color: #ededed;
+}
+.arabicContent{
+    direction: rtl;
+}
+.settingsIcon {
+    content          : url(images/setting.png);
+    width            : 28px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.backIcon {
+    content          : url(images/back_arrow.png);
+    width            : 25px;
+}
+
+#loader {
+    z-index: 99999;
+}
+.loader {
+    content          : url(images/loader.gif);
+    width            : 50px;
+    height           : 50px;
+}
+ul li,ol li{
+    list-style: none;
+}
+a{
+    color: #292c3c;
+}
+/* Comman CSS Ends*/
+
+/* Login Page CSS Starts */
+
+
+.loginBody{
+    background-color: #523f56;
+}
+.loginContainer{
+    margin: 0 auto;
+    width: 380px;
+}
+.siteLogo {
+    text-align: center;
+    
+}
+.logoImage{
+    margin: 50px 0px;
+}
+.siteTitle{
+    font-family: 'Arial';
+    font-size: 1.7rem;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 40px;
+}
+.siteLogo .logoImage img{
+    max-width: 100%;
+}
+.username,.password,#langSelect{
+    max-width: 100%;
+    margin-bottom: 2px;
+    position: relative;
+}
+.username input,.password input,#langSelect .oj-select-choice{
+    padding-left: 53px;
+    height: 50px;
+    border-radius: 0;
+    width: 100%;
+}
+#langSelect .oj-select-choice{
+    padding: 0 0px 0px 18px;
+    font-size: 17px;
+}
+.username::before,.password::before{
+    content: "#";
+    background-size: auto 25px;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    background-color: #fff;
+    height: 44px;
+    font-size: 0;
+    width: 50px;
+    top: 3px;
+    left: 2px;
+    z-index: 9;
+}
+.username::before{
+    background-image: url("images/user.png");
+}
+.password::before{
+    background-image: url("images/password.png");
+}
+/* #langSelect::before{
+    background-image: url("images/langIcon.png");
+    top: -14px;
+} */
+.customDropdown .oj-select{
+    max-width: none;
+}
+.customDropdown .oj-select.oj-select-jet .oj-select-arrow::before{
+    content: "#";
+    background-image: url("images/down_arrow.png");
+    background-size: auto 25px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    height: 25px;
+    font-size: 0;
+    width: 35px;
+    top: 0px;
+    z-index: 9;
+    margin-bottom: 10px;
+}
+#langSelect .oj-select .oj-select-chosen{
+    font-family: 'Arial';
+}
+.submitBtn{
+    margin-top: 25px;
+}
+.submitBtn #submit{
+    height: 60px;
+    width: 100%;
+    font-size: 1.4rem;
+    font-family: 'Arial';
+}
+.submitBtn #submit button{
+    background: none;
+    border-radius:0;
+    border:none;
+    background-color: #768db1;
+    color: #fff; 
+    line-height: 3.3em;
+    cursor: pointer;
+}
+.username input::-webkit-input-placeholder,
+.password input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-style: normal;
+    color: #aeabab;
+}
+.username input::-moz-placeholder,
+.password input::-moz-placeholder { /* Firefox 19+ */
+    font-style: normal;
+    color: #aeabab
+}
+.username input:-ms-input-placeholder,
+.password input:-ms-input-placeholder { /* IE 10+ */
+    font-style: normal;
+    color: #aeabab
+}
+.username input:-moz-placeholder,
+.password input:-moz-placeholder { /* Firefox 18- */
+    font-style: normal;
+    color: #aeabab
+}
+
+/* Login Page CSS Ends */
+
+
+
+/* Header CSS Starts */
+.header.oj-web-applayout-header > div{
+    padding-left: 28px;
+    padding-right: 28px;
+} 
+.headerTop{
+    background-color: #523f56;
+    height: 90px;
+}
+.startContainer{
+    height: 100%;
+    width: 80%;
+}
+.userImage{
+    width: 110px;
+    position: relative;
+    top: 22px;
+}
+.userImage img{
+    width:110px;
+    border-radius: 50%;
+}
+.userInfo{
+    font-family: 'Arial';
+    color: #fff;
+    padding: 27px 20px 0px 20px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.userInfo .userName{
+    margin: 0;
+    font-size: 1.7rem;
+    color: #fff;
+    font-weight: 400
+
+}
+.employeeId{
+    color: #fff;
+    font-family: 'Arial';
+    font-size: 1.3rem;
+    margin: 15px 5px 0px 5px;
+}
+.logoutBtn{
+    margin: 6px 0 0 50px;
+}
+.logoutBtn #logout button{
+    background-image: url("images/logout.png");
+    background-color: transparent;
+    border: 0;
+    background-repeat: no-repeat;
+    background-size: auto 35px;
+    font-size: 0;
+    width: 35px;
+    cursor: pointer;
+}
+.mainNavBar{
+    padding: 0px 130px;
+}
+.header{
+    box-shadow: none;
+    background-color: #fff
+}
+.mainNavBar .oj-navigationlist-item-element{
+    border-width: 0 0 2px 0 !important;
+    
+}
+.mainNavBar .oj-navigationlist-item-element a span,
+.mainNavBar .oj-navigationlist-item-element.oj-selected a span{
+    font-size:20px !important;
+    color:#523f56 !important;
+}
+.mainNavBar .oj-navigationlist-item-element a{
+    padding: 0.7rem 1.07143rem 7px !important;
+}
+.mainNavBar .oj-navigationlist-item-element.oj-selected{
+    border-color: #523f56;
+    border-width: 0 0 2px 0;
+}
+.headerBottom{
+    height: 45px;
+}
+/* Header CSS Ends */
+
+/* Dashboard CSS Starts */
+
+.welcomeHeading{
+    font-family: 'Arial';
+    color: #523f56;
+    font-size: 28px;
+}
+
+.dashBoardListView .notificationList section,
+.dashBoardListView .approvalList section,
+.dashBoardListView .quickLink section,
+.dashBoardListView .insurancePanelSection section,
+.dashBoardListView .insuranceLowerContainer section{
+    box-shadow: 0px 2px 4px 2px #c1c1c1;
+    border: solid 0px #c1c1c1;
+    background-color: #fff;
+    height: 100%;
+}
+.dashBoardListView .leaveList section{
+    box-shadow: 0px 2px 4px 2px #c1c1c1;
+    border: solid 0px #c1c1c1;
+    background-color: #fff;
+}
+.listHeader{
+    background-color: #523f56;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.listHeader h4{
+    font-family: 'Arial';
+    color: #fff;
+    padding: 0px 12px;
+    margin: 0;
+}
+.approvalList > h3,.leaveList h3,.modalPopup .leaveTable h3{
+    margin-top: -36px;
+    font-size: 1.6rem;
+    font-family: 'Arial';
+    color: #523f56;
+    font-weight: 700;
+}
+.approvalList .pendingTable .oj-table-header{
+    display: none;
+}
+.approvalList .pendingTable .oj-table-body-row .oj-table-data-cell{
+    white-space: normal;
+    padding: 10px 10px;
+}
+.subjectSection{
+grid-area: main;
+padding: 20px 0px;
+}
+.dashBoardListView .container p{
+    margin:0px; 
+    color: #292c3c;
+    font-family: 'Arial';
+    font-size: 16px;
+}
+.dashBoardListView .approvalList section{
+    font-size: 20px;
+}
+.actionBtn{
+    border-left: solid 1px #d6dfe6;
+    width: 35%;
+    text-align: center !important;
+    vertical-align: top;
+    padding: 15px 0px !important;
+
+}
+.actionBtn .oj-button{
+    margin: 0px;
+    border-radius: 5px;
+}
+.actionBtn .oj-button.oj-default .oj-button-button,
+.actionBtn .oj-button.oj-hover .oj-button-button,
+.actionBtn .oj-button.oj-focus .oj-button-button{
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    font-family: 'Arial';
+    line-height: 2.3em;
+    color: #fff;
+    cursor: pointer;
+}
+.actionBtn .oj-button.rejectBtn{
+    margin-left: 10px;
+    background-color: #f00;
+    width:7em;
+}
+.actionBtn .oj-button.rejectBtn.oj-hover,
+.actionBtn .oj-button.rejectBtn.oj-focus{
+    background-color: #f63131;
+}
+.actionBtn .oj-button.approveBtn.oj-hover,
+.actionBtn .oj-button.approveBtn.oj-focus{
+    background-color:#27a74a;
+}
+.actionBtn .oj-button.approveBtn{
+    background-color: #0f9935;
+    width:7em;
+}
+
+.approvalList .item-2 ul li{
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-right: 5px;
+}
+
+
+
+.quickLink ul li .container{
+position: relative;
+}
+.quickLink ul li,.quickLink ul li:last-child{
+border: none !important;
+border-color: transparent !important;
+background-image: none;
+}
+.quickLink ul li .container p::before{
+content: '#';
+background-image: url("images/link-arrow.png");
+background-size: auto 20px;
+background-repeat: no-repeat;
+background-position: top;
+position: absolute;
+background-color: transparent;
+height: 20px;
+font-size: 0;
+width: 17px;
+top: 0px;
+}
+.quickLink ul li .container p span{
+margin-left: 30px;
+display: block;
+}
+
+/* Dashboard CSS Ends */
+
+/* Leave CSS Starts */
+.leaveTable .oj-table{
+    width:100%;
+}
+.dashBoardListView .leaveList .employeeDetails{
+    height: auto;
+    margin-bottom: 20px;
+}
+.leaveList .employeeDetails ul{
+    list-style: none;
+    margin: 20px 0px;
+}
+.leaveList .employeeDetails ul li{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:18px;
+    padding: 3px 0px;
+}
+.leaveList .employeeDetails ul li span{
+    width: 48%;
+    display: inline-block;
+    vertical-align: text-top;
+}
+.leaveList .employeeDetails ul li span:last-child{
+    padding-left: 10px;
+}
+.oj-table-grid-display .oj-table-header {
+    background-color: #523f56;
+    border-bottom: 1px solid #ffffff;
+    color: #fff;
+    font-family: 'Arial';
+}
+
+/* Leave CSS Ends */
+
+/* Insurance CSS Starts */
+.insurancePanelSection section{
+    padding: 5px 10px;
+    box-sizing: border-box
+}
+.insurancePanelSection .demo-panel-customizations {
+    padding: 10px 0px;
+    
+}
+.innerInsuranceContainer{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #523f56;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: 1px solid #d6dfe6;
+    border-radius: 5px;
+    padding: 0px 5px;
+    min-height: 170px;
+}
+.insurancePanelSection .demo-panel-customizations .insurancePanel img{
+    max-width: 100%;
+    width: 60px;
+}
+.insuranceBackArrow{
+    position: relative;
+    width: 30px;
+    height: 40px;
+}
+.insuranceBackArrow::before{
+    content: '#';
+    background-image: url(images/next_arrow.png);
+    background-size: auto 23px;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    height: 100%;
+    font-size: 0;
+    width: 100%;
+    transform: rotateY(180deg);
+    cursor: pointer;
+}
+.insuranceBackArrow + h4{
+    padding: 0;
+}
+.empInsuranceTable{
+    width: 97%;
+    margin: 20px auto;
+}
+.insuranceView .oj-checkbox-label{
+    display: none;
+}
+.insuranceView .oj-choice-item{
+    justify-content: center;
+}
+.insuranceView .oj-table-data-cell{
+    padding-top:0px;
+    padding-bottom: 0px;
+}
+.insuranceView .oj-table-body-row{
+    background-color: #e1e1e1;
+    font-family: 'Arial';
+}
+.insuranceView  .oj-table-body .oj-radiocheckbox-icon,
+.insuranceView  .oj-table-body .oj-checkboxset .oj-hover .oj-radiocheckbox-icon{
+    background-image: url(images/check_icon.png);
+    width: 22px;
+    height: 22px;
+    background-size: cover;
+    background-position: -22px 0px;
+    margin: 0;
+}
+.insuranceView  .oj-table-body .oj-checkboxset .oj-selected .oj-radiocheckbox-icon,
+.insuranceView  .oj-table-body .oj-checkboxset .oj-active .oj-radiocheckbox-icon{
+    background-image: url(images/check_icon.png) !important;
+    background-position: 0px 0px;
+}
+.insuranceView .insuranceFooter,
+.insuranceView .addBtn{
+    padding: 15px 25px 15px 20px;
+}
+
+.medicalInsuContainer,.grivanceContainer{
+    display: none;
+}
+.approveEmpMedicalInsuContainer .empInsuranceTable{
+    overflow-x: auto;
+}
+.customTableField,.approveEmpMedicalInsuContainer table td .oj-select{
+    background-color: #fff;
+    width: 8em !important;
+}
+.approveEmpMedicalInsuContainer table td .oj-select .oj-select-arrow::before{
+    content: "#";
+    background-image: url("images/down_arrow.png");
+    background-size: auto 18px;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-color: transparent;
+    font-size: 0;
+    height: 15px;
+    width: 18px;
+    margin-bottom: 15px
+}
+
+.approveEmpMedicalInsuContainer table td.customColumn{
+    padding: 5px !important;
+}
+.empInsuranceTable .oj-helper-text-align-end{
+    text-align: inherit !important;
+}
+.empInsuranceTable table{
+    width:100%;
+}
+.approverEmpInsuranceTable table th,
+.approverEmpInsuranceTable table td{
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    text-align: inherit;
+    height: 36px;
+    border-right: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+    font-size: inherit;
+    font-weight: normal;
+}
+.approverEmpInsuranceTable table td:not(.customCheckBox){
+    min-width: 10rem;
+}
+.approverEmpInsuranceTable table td{
+    background-color: #ccc;
+}
+.approverEmpInsuranceTable table td .oj-form-control{
+    margin: 0px;
+}
+.approverEmpInsuranceTable table td .ServicePro,
+.approverEmpInsuranceTable table td .DocNum,
+.approverEmpInsuranceTable table td select,
+.approverEmpInsuranceTable table td .approveRegion{
+    height: 30px;
+    border: 0;
+    padding: 0px 5px; 
+    width: 100%;
+    box-sizing: border-box;  
+}
+.approverEmpInsuranceTable table td .approverselect{
+    position: relative;
+    margin: 0;
+    display: block;
+}
+.approverEmpInsuranceTable table td .approverselect::before{
+    content: "#";
+    background-image: url(images/down_arrow.png);
+    background-size: auto 19px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    height: 28px;
+    font-size: 0;
+    width: 26px;
+    top: 1px;
+    z-index: 9;
+    margin-bottom: 10px;
+    position: absolute;
+    right: 1px;
+    background-color: #fff;
+}
+.customCheckBox input{
+    width: 35px;
+    height: 22px;
+    border: 0;
+    background: #fff;
+    display: block;
+}
+#messageDialog .oj-helper-clearfix,#custommessageDialog .oj-helper-clearfix{
+    display: inline-block;
+}
+/* .approverEmpInsuranceTable table td .oj-radiocheckbox-icon{
+    background-image: url(images/check_icon.png);
+    width: 22px;
+    height: 22px;
+    background-size: cover;
+    background-position: -22px 0px;
+    margin: 0;
+    display: block;
+    margin: auto;
+}
+.approverEmpInsuranceTable table td .oj-radiocheckbox-icon.Checked{
+    background-position: 0px 0px;
+}
+.approverEmpInsuranceTable table td:first-child{
+   text-align: center;
+}
+.approverEmpInsuranceTable table td .oj-radiocheckbox-icon input{
+    opacity: 0;
+    width: 22px;
+    height: 22px;
+} */
+.approveDataError{
+    padding: 5px 8px;
+    margin-top: 10px;
+}
+.approveDataError span{
+    background-color: #db3333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-family: 'Arial';
+    font-size: inherit;
+    font-weight: normal;
+    margin-right: 5px;
+    box-shadow: 2px 2px 3px 0px #beb9b9
+}
+
+/* Insurance CSS Ends */
+
+/* Comman Modal popup CSS starts */
+.modalPopup{
+    border: none;
+    border-radius: 10px;
+    background-color: #fff;
+}
+.modalPopup .oj-dialog-header .oj-button{
+    width: 44px;
+    height: 44px;
+    position: absolute;
+    right: 20px;
+    top: 5px;
+}
+.modalPopup .oj-dialog-header .oj-dialog-header-close-wrapper button .oj-fwk-icon-cross::before{
+    content: "#";
+    background-image: url(images/close.png);
+    font-size: 0px;
+    width: 18px;
+    height: 25px;
+    background-size: auto 25px;
+    background-repeat: no-repeat;
+    background-position: top;
+    top: 10px;
+    position: absolute;
+    right: 13px;
+}
+.modalPopup .oj-dialog-header{
+    background-color: #523f56;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 50px;
+    padding: 15px 20px;
+    box-sizing: border-box;
+}
+.customLabel{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #523f56;
+    font-size: 20px;
+}
+.customInput,.customSelect .oj-select,.customDatepicker,.customSelect.selectSearch{
+    width: 100%;
+    max-width: none;
+    position: relative;
+}
+.customInput input[disabled]{
+    color: #000 !important;
+    background-color: #ebebeb   !important;
+}
+
+.customInput input,
+.customSelect .oj-select-choice,
+.customDatepicker,
+.customInput textarea{
+    min-height: 50px;
+    border: solid 1px;
+    border-color: #d9d9d9 !important;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+.customInput textarea{
+    padding: 0px;
+}
+.customDatepicker .oj-inputdatetime-input-container,
+.customDatepicker .oj-inputdatetime-input-container input,
+.customDatepicker .oj-inputdatetime-input-container .oj-inputdatetime-input-trigger{
+    min-height: 50px;
+    border: none;
+    border-radius: 5px;
+	font-size: 16px;
+}
+.customDatepicker .oj-inputdatetime-input-container .oj-inputdatetime-input-trigger .oj-inputdatetime-calendar-icon{
+    padding: 0 17px 0px 2px;
+}
+
+.startDate::before,.endDate::before{
+    font-family: Arial, Helvetica, sans-serif;
+    content:"Start Date";
+    font-size:12px;
+    position: absolute;
+    left: 6px;
+    top: 2px; 
+}
+.endDate::before{
+    content:"End Date" 
+}
+.customSearch input{
+    padding-right: 43px;
+}
+.customSearch::before,
+.selectSearch .oj-select::before{
+    content: "#";
+    background-image: url(images/search.png);
+    background-size: auto 25px;
+    background-repeat: no-repeat;
+    background-position: 8px 13px;
+    position: absolute;
+    background-color: #fff;
+    height: 48px;
+    font-size: 0;
+    width: 40px;
+    top: 1px;
+    right: 3px;
+}
+.modalPopup .modalFooter{
+    justify-content: left;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.confirmBox{
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Arial';
+    font-size: 20px;
+    font-weight: 700;
+}
+.confirmBox .confirmImg{
+    background-image: url(images/done.png);
+    width: 70px;
+    height: 70px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 15px 0px;
+}
+.errorModal .oj-dialog-header .oj-dialog-title::before{
+    content: "";
+    background-image: url(images/error.png);
+    width: 25px;
+    height: 25px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    vertical-align: sub;
+    margin-right: 5px;
+}
+.modalPopup ul li,.modalPopup ol li{
+    list-style: none !important;
+    font-style: normal !important;
+}
+
+.modalPopup .leavePolicy{
+    position: relative;
+}
+.modalPopup .leavePolicyText{
+    color: #000;
+    background-color: #ebebeb;
+    height: 224px;
+    margin-top: 28px;
+    border: solid 1px;
+    border-color: #d9d9d9;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: 'Arial';
+    padding: 15px;
+    box-sizing: border-box;
+    direction: rtl;
+}
+.modalPopup .leavePolicyText .annualLeave,
+.modalPopup .leavePolicyText .educationLeave{
+    height: 100%;
+    overflow-y: auto;
+}
+
+.modalPopup .leavePolicyText ul{
+    padding: 0px 15px;
+    margin: 0;
+}
+.modalPopup .leavePolicyText b{
+    font-size: 16px;
+}
+.modalPopup .leavePolicy::before{
+    content: "#";
+    background-image: url(images/left-arrow.jpg);
+    background-size: auto 15px;
+    background-repeat: no-repeat;
+    position: absolute;
+    background-color: #fff;
+    height: 15px;
+    font-size: 0;
+    width: 15px;
+    left: -5px;
+    top: 45px;
+}
+/* Comman Modal popup CSS ends */
+
+
+
+/* CSS for Arabic starts */
+    html[dir = rtl] .logoutBtn {
+        margin: 6px 10px 0 0px;
+    }
+    html[dir = rtl] .quickLink ul li .container p span {
+        margin-right: 30px;
+        display: block;
+    }
+    html[dir = rtl] .quickLink ul li .container p::before{
+        -webkit-transform: rotateY(180deg);
+        transform: rotateY(180deg)
+    }
+    html[dir = rtl] .actionBtn{
+        border-right: solid 1px #d6dfe6;
+        border-left:none;
+    }
+
+    html[dir = rtl] .leaveTable .oj-table-grid-display .oj-table-header .oj-table-header-row th:last-child .oj-table-column-header{
+        border: none;
+    }
+    html[dir = rtl] .oj-dialog-title{
+        text-align: left;
+    }
+    html[dir = rtl] .oj-dialog-footer .oj-button{
+        margin-right: 7px;
+    }
+    html[dir = rtl] .modalPopup .oj-dialog-header .oj-button{
+        right: 10px;
+    }
+    html[dir = rtl] .empInsuranceTable .oj-helper-text-align-end{
+        text-align: inherit !important;
+    }
+/* CSS for Arabic ends */
+
+	
+
+
+/* Media Queries */
+@media only screen and (max-width: 1281px) {
+    .leaveList .employeeDetails ul{
+        padding: 0px;
+    }
+    .leaveList .employeeDetails ul li{
+        font-size: 16px;
+    }
+    .leaveList .employeeDetails ul li span{
+        width: 45%;
+    }
+    .oj-table-grid-display .oj-table-column-header-cell, .oj-table-editable .oj-table-column-header-cell{
+        padding: 10px 0px;
+    }
+    .modalPopup{
+        width:80vw !important;
+    }
+    .actionBtn .oj-button.rejectBtn,.actionBtn .oj-button.approveBtn{
+        width:5em;
+        margin:0px;
+    }
+    .logoutBtn {
+        margin: 6px 0 0 10px;
+    }
+    /* .userImage {
+        width: 34%;
+    }
+    html[dir = rtl] .userImage{
+        width: 14%;
+    } */
+}
+@media only screen and (max-width: 768px) {
+    .approvalList,.leaveList,.insurancePanelSection{
+        margin: 20px 0px;
+    }
+    .employeeId{
+        font-size: 1.3rem;
+    }
+    .logoutBtn {
+        margin: 6px 0 0 30px;
+    }
+    /* .userImage {
+        width: 68%;
+    }
+    html[dir = rtl] .userImage{
+        width: 20%;
+    } */
+    
+}
+
+.confirmBox .confirmImg{
+    background-image: url(images/done.png);
+    width: 70px;
+    height: 70px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 15px 0px;
+}
+.errorModal .oj-dialog-header .oj-dialog-title::before{
+    content: "";
+    background-image: url(images/error.png);
+    width: 25px;
+    height: 25px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    vertical-align: sub;
+    margin-right: 5px;
+}
+.modalPopup ul li,.modalPopup ol li{
+    list-style: none !important;
+    font-style: normal !important;
+}

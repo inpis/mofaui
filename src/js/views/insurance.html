@@ -1,0 +1,505 @@
+<!--
+ Copyright (c) 2014, 2018, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+ <div class="oj-hybrid-padding">
+    <div class="dashBoardListView  insuranceView">
+
+      <!-- Insurance upper container starts-->  
+      <div class="oj-flex oj-flex-items-pad insuranceUpperContainer">
+        <div class="oj-sm-12 oj-md-12 oj-lg-3 oj-xl-3 oj-flex-item notificationList">
+          <section>
+            <div class="listHeader"><h4><span data-bind="text: notification"></h4></div>
+			<oj-list-view id="notificationlistview" aria-label="list with static data" data="[[notificationdataprovider]]" item.renderer="[[oj.KnockoutTemplateUtils.getRenderer('server_template', true)]]" selection-mode="single">
+			<oj-paging-control id="paging" data='[[notificationdataprovider]]' page-size='7' slot='bottom'>
+			</oj-paging-control>
+			</oj-list-view>
+			
+			<script type="text/html" id="server_template">
+			<ul>
+                <li data-bind="attr: {id: $data['NotificationId']}">
+                    <div class="container">
+                        <p><span data-bind="text: Subject"></span></p>
+                    </div>
+                </li>
+            </ul>
+			</script>
+          </section>
+        </div>
+
+        <!-- Insurance Panel Section Starts -->
+        <div class="oj-sm-12 oj-md-12 oj-lg-9 oj-xl-9 oj-flex-item insurancePanelSection">
+          <section>
+            <div class="oj-flex oj-flex-items-pad">
+                <div class="oj-md-12 oj-lg-3 oj-xl-3 oj-flex-item demo-panel-customizations">
+                    <div class="innerInsuranceContainer cursor-pointer" data-bind="click: insuranceData">
+                        <div class="insurancePanel">
+                        <img src="css/images/icon_1.png" alt="" />
+                        </div>
+                        <p><span data-bind="text: insuranceTitle"></span></p>   
+                    </div>
+                </div>
+                <div class="oj-md-12 oj-lg-3 oj-xl-3 oj-flex-item demo-panel-customizations" >
+                  <div class="innerInsuranceContainer cursor-pointer" data-bind="click: grievanceData">
+                        <div class="insurancePanel">
+                            <img src="css/images/icon_2.png" alt="" />
+                        </div>
+                        <p><span data-bind="text: grievanceTitle"></span></p>
+                  </div>      
+                </div>
+                <div class="oj-md-12 oj-lg-3 oj-xl-3 oj-flex-item demo-panel-customizations" >
+                    <div class="innerInsuranceContainer cursor-pointer" data-bind="click: reimbursementData">
+                        <div class="insurancePanel">
+                        <img src="css/images/icon_3.png" alt="" />
+                        </div>
+                        <p><span data-bind="text: reimbursementTitle"></span></p>
+                    </div>    
+                </div>
+                
+                <div class="oj-md-12 oj-lg-3 oj-xl-3 oj-flex-item demo-panel-customizations" >
+                    <div class="innerInsuranceContainer cursor-pointer" data-bind="click: approveEmpMedicalInsuranceData">
+                        <div class="insurancePanel">
+                            <img src="css/images/icon_5.png" alt="" />
+                        </div>
+                        <p><span data-bind="text: approveEmpInsuranceTitle"></span></p>
+                    </div>    
+                </div>
+            </div>
+          </section>
+         </div>
+        <!-- Insurance Panel Section Ends -->
+      </div>
+      <!-- Insurance upper container ends-->
+      
+      <!-- Insurance lower container starts-->
+      <div class="oj-flex oj-flex-items-pad insuranceLowerContainer">
+            <div class="oj-sm-12 oj-md-12 oj-lg-12 oj-xl-12 oj-flex-item">
+                <!-- Medical Insurance Container starts -->
+                    <section class="medicalInsuContainer">
+                            <div class="listHeader"><span class="insuranceBackArrow"></span><h4 data-bind="text: insuranceTitle"></h4></div>
+                            <div class="empInsuranceTable">
+                                <oj-table id="empInsuranceTable" class="border0" aria-label="Insurance Table"
+                                            data='[[empInsurancedatasource]]'
+											display='grid'
+                                            columns-default='{"sortable": "disabled"}'   
+                                            selection-mode='{"row": "multiple", "column": "multiple"}' 
+                                            columns='{{empInsuranceColumnArray}}'
+                                            style='width: 100%;'>
+									<oj-paging-control id="paging" data='[[empInsurancedatasource]]' page-size='10' slot='bottom'>
+									</oj-paging-control>
+                                </oj-table>
+                                <script type="text/html" id="checkbox_tmpl">
+                                    <td>
+                                        <oj-checkboxset aria-hidden='true'
+                                                        value='{{$context.row.Selected}}' 
+                                                        class='oj-checkboxset-no-chrome'>
+                                            <oj-option data-bind="attr:{
+                                                    id: 'checbox' + $context.cellContext.status.rowIndex}" value="checked"></oj-option>
+                                        </oj-checkboxset>
+                                    </td>
+                                 </script>
+                            </div>
+                            <div class="insuranceFooter">
+                                <oj-button id="" class="defaultBtn" on-click="[[initEmpSubmit]]"><span data-bind="text: btnsubmit"></span></oj-button>    
+                            </div>
+                            
+                    </section>
+                    <!-- Medical Insurance Container ends -->
+
+                    <!-- Medical Grivance Container starts -->
+                    <section class="grivanceContainer">
+                        <div class="listHeader"><span class="insuranceBackArrow"></span><h4 data-bind="text: grievanceTitle"></h4></div>
+                        <div class="oj-flex-bar">
+                            <div class="oj-flex-bar-end addBtn paddingB0">
+                                <oj-button class="defaultBtn" on-click="[[addGrievanceData]]"><span data-bind="text: btnadd"></span></oj-button>
+                            </div>
+                        </div>
+                        <div class="empInsuranceTable">
+                                <oj-table id="empgrivanceTable" class="border0" aria-label="Grivance Table"
+                                data='[[grivancedataprovider]]'
+                                display='grid'
+                                columns-default='{"sortable": "disabled"}'  
+                                columns='{{empgrivanceColumnArray}}'
+                                style='width: 100%;'>
+									
+                                </oj-table>
+                        </div>
+                    </section>
+                    <!-- Medical Grivance Container ends -->
+
+                    <!-- Medical Reimbursement Container starts -->
+                    <section class="reimbursementContainer">
+                        <div class="listHeader"><span class="insuranceBackArrow"></span><h4 data-bind="text: reimbursementTitle"></h4></div>
+                        <div class="oj-flex-bar">
+                            <div class="oj-flex-bar-end addBtn paddingB0">
+                                <oj-button class="defaultBtn" on-click="[[addReimbursementData]]"><span data-bind="text: btnadd"></span></oj-button>
+                            </div>
+                        </div>
+                        <div class="empInsuranceTable">
+                                <oj-table id="empReimbursementTable" class="border0" aria-label="Reimbursement Table"
+                                data='[[reimbursementdataprovider]]'
+                                display='grid'
+                                columns-default='{"sortable": "disabled"}'  
+								columns='{{empReimbursementColumnArray}}'
+                                style='width: 100%;'>
+                                </oj-table>
+                        </div>
+                    </section>
+                    <!-- Medical Reimbursement Container ends -->
+
+                    <!-- Approve Employpee Medical Insurance Container starts -->
+                    <section class="approveEmpMedicalInsuContainer">
+                        <div class="listHeader"><span class="insuranceBackArrow"></span><h4 data-bind="text: approveEmpInsuranceTitle"></h4></div>
+                        
+                        <div class="empInsuranceTable approverEmpInsuranceTable">
+                            <div class="oj-table-grid-display">
+                            <table class="" id="apprEmpMedicalIns">
+                                <thead class="oj-table-header">
+                                   <tr>
+                                        <th>Select</th>
+                                        <th><span data-bind="text: medinsurance"></span></th>
+                                        <th><span data-bind="text: persontype"></span></th>
+                                        <th><span data-bind="text: depref"></th>
+                                        <th><span data-bind="text: empno"></th>
+                                        <th><span data-bind="text: name"></th>
+                                        <th><span data-bind="text: arabicname"></th>
+                                        <th><span data-bind="text: dob"></th>
+                                        <th><span data-bind="text: nationalid"></th>
+                                        <th><span data-bind="text: phone"></th>
+                                        <th><span data-bind="text: city"></th>
+                                        <th><span data-bind="text: datecover"></th>
+                                        <th><span data-bind="text: job"></th>
+                                        <th><span data-bind="text: serviceprovider"></th>
+                                        <th><span data-bind="text: document"></th>
+                                        <th><span data-bind="text: approveddate"></th>
+                                        <th><span data-bind="text: action"></th>
+                                        <th><span data-bind="text: reason"></th>
+                                        <th><span data-bind="text: status"></th>
+                                     </tr>
+                                </thead>
+                                <tbody data-bind="foreach:approveEmpInsuranceArray">
+                                    <tr>
+                                        <td class="customCheckBox">
+                                            <span class="">
+                                                <input type="checkbox" data-bind="value: PersonId,click: $parent.toggleAssociation,checked:Selected"
+                                                />
+                                            </span>
+                                        </td>
+                                        <td data-bind="text: MediInsId"></td>
+                                        <td data-bind="text: PersonType"></td>
+                                        <td data-bind="text: EmpDepRefNum"></td>
+                                        <td data-bind="text: EmpNum"></td>
+                                        <td data-bind="text: NameEN"></td>
+                                        <td data-bind="text: NameAR"></td>
+                                        <td data-bind="text: DOB"></td>
+                                        <td data-bind="text: NationalId"></td>
+                                        <td data-bind="text: PhoneNum"></td>
+                                        <td data-bind="text: City"></td>
+                                        <td data-bind="text: DateCover"></td>
+                                        <td data-bind="text: JobName"></td>
+
+                                        <td>
+                                            <input type="text" class="ServicePro" id="" data-bind="event: { change: $parent.getValService }, value: ServicePro"></input>
+                                        </td>
+
+                                        <td>
+                                            <input type="text" id="" class="DocNum" data-bind="event: { change: $parent.getValDoc },value: DocNum"></input>
+                                        </td>
+                                        <td>
+                                            <oj-input-date id="" data-bind="value: ExpDate"></oj-input-date>
+                                        </td>
+                                        <td data-bind="if: EmpNum">
+                                            <span class="approverselect" data-bind="event:{change:$parent.getApproval}">
+                                                <select>
+                                                    <option value=""></option>
+                                                    <option value="Approve">Approve</option>
+                                                    <option value="Reject">Reject</option>
+                                                </select>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="" class="approveRegion" data-bind="event: { change: $parent.getRegion },value: Reason"></input>
+                                        </td>
+                                        <td data-bind="text: InsStatus"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+					</div>
+
+                    <div class="insuranceFooter">
+                        <oj-button id="appEmpSubmitbtn" class="defaultBtn" on-click="[[appEmpSubmit]]">
+                            <span data-bind="text: btnsubmit"></span>
+                        </oj-button>
+                    </div>
+
+                </section>
+                <!-- Approve Employpee  Medical Insurance Container ends -->
+
+
+            </div>    
+      </div>
+      <!-- Insurance lower container ends-->
+      
+
+    </div>
+</div>
+
+
+
+
+<!-- All Dialog Boxes -->
+
+
+<!-- Apply Insurance Grivance Dialog box Starts-->
+<oj-dialog style="display:none;width: 50vw;" id="applyMedicalGrivanceModal" class="modalPopup">
+	<div slot="header" class="oj-helper-clearfix">
+		<span data-bind="text: grievanceTitle"></span>
+	</div>
+    <div slot="body">
+        <div class="oj-flex oj-flex-items-pad">
+            <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item marginB10">
+                    <oj-label for="policy-number" class="customLabel"> <span data-bind="text: policyNoLable"></span></oj-label>
+                    <oj-select-one id="policy-number" value="{{policyNum}}" class="customSelect customDropdown" options="{{policyNo}}" on-value-changed="[[valueChangedHandler]]" required>
+                    </oj-select-one>
+            </div>
+            <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item marginB10">
+                    <oj-label for="service-provider" class="customLabel"><span data-bind="text: serviceProLable"></span></oj-label>
+                    <oj-select-one id="service-provider" value="{{serviceProviderVal}}" class="customSelect customDropdown" options="{{serviceProviderList}}" disabled="true" required>
+                    </oj-select-one>
+            </div>
+            <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item marginB10">
+                <oj-label for="claim" class="customLabel"><span data-bind="text: claimLable"></span></oj-label>
+                <oj-input-text id="claim" class="customInput" value="{{claimRefNum}}" required></oj-input-text>
+            </div>
+            <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item marginB10">
+                    <oj-label for="claim-date" class="customLabel"><span data-bind="text: claimDateLable"></span></oj-label>
+                    <oj-input-date id="claim-date" class="customDatepicker" converter="[[dateConverter]]" value='{{claimDateValue}}' required></oj-input-date>
+		    </div>
+            <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item marginB10">
+                <oj-label for="amount" class="customLabel"><span data-bind="text: amountLable"></span></oj-label>
+                <oj-input-number id="amount" value="{{amount}}" required></oj-input-number>
+            </div>
+            <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item marginB10">
+                    <oj-label for="currency" class="customLabel" ><span data-bind="text: currencyLable"></span></oj-label>
+                    <oj-select-one id="currency" class="customSelect selectSearch" options="[[currencyList]]" value="{{currency}}" required>
+                    </oj-select-one>
+            </div>
+            <div class="oj-sm-12 oj-md-12 oj-lg-12 oj-xl-12 oj-flex-item">
+                <oj-label for="remark" class="customLabel" ><span data-bind="text: remarkLable"></span></oj-label>
+                <oj-text-area id="remark" class="customInput"  value="{{remarks}}" required></oj-text-area>
+            </div>
+
+        </div>    
+    </div>
+    <div slot="footer" class="modalFooter">
+      <oj-button id="nextBtn" class="defaultBtn" on-click="[[nextGrievance]]"><span data-bind="text: btnnext"></span></oj-button>
+    </div>
+</oj-dialog>
+<!-- Apply Insurance Grivance Dialog box Ends-->
+
+<!-- Apply Insurance Grivance Next Dialog box Starts-->
+
+<oj-dialog style="display:none;width: 60vw;" id="applyGrivanceNextModal" class="modalPopup leaveList">
+	<div slot="header" class="oj-helper-clearfix">
+		<span data-bind="text: grievanceTitle"></span>
+	</div>
+    <div slot="body">
+            <div class="oj-flex oj-flex-items-pad employeeDetails">
+                    <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item">
+                        <ul class="padding0">
+                          <li><span data-bind="text: policyNoLable"></span>:<span><b data-bind="text: policyNum"></b></span></li>
+                          <li><span data-bind="text: serviceProLable"></span>:<span><b data-bind="text: serviceProviderVal"></b></span></li>
+                          <li><span data-bind="text: claimLable"></span>:<span><b data-bind="text: claimRefNum"></b></span></li>
+                          <li><span data-bind="text: claimDateLable"></span>:<span><b data-bind="text: claim_date_val2"></b></span></li>
+                        </ul>
+                    </div>
+                    <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item">
+                        <ul class="padding0">
+                            <li><span data-bind="text: amountLable"></span>:<span><b data-bind="text: amount"></b></span></li>
+                            <li><span data-bind="text: currencyLable"></span>:<span><b data-bind="text: currency"></b></span></li>
+                            <li><span data-bind="text: remarkLable"></span>:<span><b data-bind="text: remarks"></b></span></li>
+                        </ul>
+                    </div>
+            </div>
+            <div class="oj-flex oj-flex-items-pad">
+                <div class="oj-sm-12 oj-md-12 oj-lg-12 oj-xl-12 oj-flex-item leaveTable">
+                    <h3 class="margin0 marginB10"><span data-bind="text: approver"></span></h3>
+                    <oj-table id="ApproveGrivanceTable" aria-label="Approve  Table"
+                                                data='[[empApproveGrievanceDataProvider]]'
+                                                display='grid' 
+                                                columns='{{approvercolumnarray}}'
+                                                scroll-policy='loadMoreOnScroll'
+                                                scroll-policy-options='{"fetchSize": 10}'
+                                                >
+                    </oj-table>
+                </div>    
+            </div>
+    </div>
+    <div slot="footer" class="modalFooter">
+        <oj-button id="grivanceSubmit" class="defaultBtn" on-click="[[dataSubmit]]"><span data-bind="text: btnsubmit"></span></oj-button>
+        <oj-button id="backBtn" class="defaultBtn BlueBtn marginl15" on-click="[[grievanceBack]]"><span data-bind="text: btnback"></span></oj-button>
+    </div>
+</oj-dialog>
+
+<!-- Apply Grivance Insurance Next Dialog box Ends-->
+
+<!-- Apply Insurance Reimbursment Dialog box Starts-->
+<oj-dialog style="display:none;width: 50vw;" id="applyMedicalReimbursmentModal" class="modalPopup" >
+	<div slot="header" class="oj-helper-clearfix">
+		<span data-bind="text: reimbursementTitle"></span>
+	</div>
+    <div slot="body">
+        <div class="oj-flex oj-flex-items-pad">
+            <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item marginB10">
+                <oj-label for="policy-number" class="customLabel"> <span data-bind="text: policyNoLable"></span></oj-label>
+					<oj-select-one id="policy-number" value="{{policyNum}}" class="customSelect customDropdown" options="{{policyNo}}" on-value-changed="[[valueChangedHandler]]" required>
+                </oj-select-one>
+            </div>
+            <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item marginB10">
+                    <oj-label for="Reimb-service-provider" class="customLabel"><span data-bind="text: serviceProLable"></span></oj-label>
+                    <oj-select-one id="service-provider" value="{{serviceProviderVal}}" class="customSelect customDropdown" options="{{serviceProviderList}}" disabled="true" required>
+                    </oj-select-one>
+            </div>
+            <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item marginB10">
+                <oj-label for="claim" class="customLabel"><span data-bind="text: claimLable"></span></oj-label>
+                <oj-input-text id="claim" class="customInput" value="{{claimRefNum}}" required></oj-input-text>
+            </div>
+            <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item marginB10">
+                    <oj-label for="claim-date" class="customLabel"><span data-bind="text: claimDateLable"></span></oj-label>
+                    <oj-input-date id="claim-date" class="customDatepicker" converter=[[dateConverter]] value='{{claimDateValue}}' required></oj-input-date>
+            </div>
+            <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item marginB10">
+                <oj-label for="totalexp" class="customLabel"><span data-bind="text: totalexplabel"></span></oj-label>
+                <oj-input-number id="totalexp" value="{{totalExpense}}" required></oj-input-number>
+            </div>
+            <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item marginB10">
+                <oj-label for="amountreim" class="customLabel"><span data-bind="text: amountreimlabel"></span></oj-label>
+                <oj-input-number id="amountreim" value="{{InsuReimbAmount}}" required></oj-input-number>
+            </div>
+            <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item marginB10">
+                <oj-label for="amountforreim" class="customLabel"><span data-bind="text: amountforreimlabel"></span></oj-label>
+                <oj-input-number id="amountforreim" value="{{ReimbAmount}}" required></oj-input-number>
+            </div>
+            <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item marginB10">
+                    <oj-label for="currency" class="customLabel" ><span data-bind="text: currencyLable"></span></oj-label>
+                    <oj-select-one id="currency" class="customSelect selectSearch" options="[[currencyList]]" value="{{currency}}" required>
+                    </oj-select-one>
+            </div>
+            <div class="oj-sm-12 oj-md-12 oj-lg-12 oj-xl-12 oj-flex-item">
+                <oj-label for="remark" class="customLabel" ><span data-bind="text: remarkLable"></span></oj-label>
+                <oj-text-area id="remark" class="customInput"  value="{{ReimbursRemarks}}"></oj-text-area>
+            </div>
+
+        </div>    
+    </div>
+    <div slot="footer" class="modalFooter">
+      <oj-button id="nextBtn" class="defaultBtn" on-click="[[nextReimbursement]]"><span data-bind="text: btnnext"></span></oj-button>
+        
+    </div>
+</oj-dialog>
+<!-- Apply Insurance Reimbursment Dialog box Ends-->
+
+<!-- Apply Insurance Reimbursment Next Dialog box Starts-->
+
+<oj-dialog style="display:none;width: 60vw;" id="applyReimbursmentNextModal" class="modalPopup leaveList">
+	<div slot="header" class="oj-helper-clearfix">
+		<span data-bind="text: reimbursementTitle"></span>
+	</div>
+    <div slot="body">
+            <div class="oj-flex oj-flex-items-pad employeeDetails">
+                    <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item">
+                        <ul class="padding0">
+                            <li><span data-bind="text: policyNoLable"></span>:<span><b data-bind="text: policyNum"></b></span></li>
+                            <li><span data-bind="text: serviceProLable"></span>:<span><b data-bind="text: serviceProviderVal"></b></span></li>
+                            <li><span data-bind="text: claimLable"></span>:<span><b data-bind="text: claimRefNum"></b></span></li>
+                            <li><span data-bind="text: claimDateLable"></span>:<span><b data-bind="text: claim_date_val2"></b></span></li>
+                            <li><span data-bind="text: totalexplabel"></span>:<span><b data-bind="text: totalExpense"></b></span></li>
+                        </ul>
+                    </div>
+                    <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item">
+                        <ul class="padding0">
+                            <li><span data-bind="text: amountreimlabel"></span>:<span><b data-bind="text: InsuReimbAmount"></b></span></li>
+                            <li><span data-bind="text: amountforreimlabel"></span>:<span><b data-bind="text: ReimbAmount"></b></span></li>
+                            <li><span data-bind="text: currencyLable"></span>:<span><b data-bind="text: currency"></b></span></li>
+                            <li><span data-bind="text: remarkLable"></span>:<span><b data-bind="text: ReimbursRemarks"></b></span></li>
+                        </ul>
+                    </div>
+            </div>
+            <div class="oj-flex oj-flex-items-pad">
+                <div class="oj-sm-12 oj-md-12 oj-lg-12 oj-xl-12 oj-flex-item leaveTable">
+                    <h3 class="margin0 marginB10"><span data-bind="text: approver"></span></h3>
+                    <oj-table id="ApproveReimbursmentTable" aria-label="Approve  Table"
+                                                data='[[empApproveDataProvider]]'
+                                                display='grid' 
+                                                columns='{{approvercolumnarray}}'
+                                                scroll-policy='loadMoreOnScroll'
+                                                scroll-policy-options='{"fetchSize": 10}'
+                                                >
+                    </oj-table>
+                </div>    
+            </div>
+    </div>
+    <div slot="footer" class="modalFooter">
+        <oj-button id="reimbursmentSubmit" class="defaultBtn" on-click="[[dataSubmit]]">Submit</oj-button>
+        <oj-button id="backBtn" class="defaultBtn BlueBtn marginl15" on-click="[[reimbursementBack]]"><span data-bind="text: btnback"></span></oj-button>
+    </div>
+</oj-dialog>
+
+<!-- Apply Reimbursment Insurance Next Dialog box Ends-->
+
+
+<!-- Confirmation Dialog box Starts-->
+
+<oj-dialog style="display:none;width: 35vw;" id="ConfirmationModal" class="modalPopup" title="Confirmation">
+    <div slot="body">
+            <div class="oj-flex oj-flex-items-pad confirmBox">
+                    <div class="confirmImg"></div>
+                    <p class="text-center">Your changes have been submitted for manager approval.</p>  
+            </div>
+                
+    </div>
+    <div slot="footer" class="modalFooter contentCenter">
+        <oj-button id="okBtn" class="defaultBtn width100" on-click="[[confirmOK]]">Ok</oj-button>
+    </div>
+</oj-dialog>
+
+<!-- Confirmation Dialog box Ends-->
+
+ <!-- Dialog box to execution process -->
+ <oj-dialog style="display:none" id="loader" title="Loading....">
+	<div slot="body">
+	  <span class="loader"></span>
+	</div>
+</oj-dialog>
+
+<!-- Dialog box to show error message-->
+<oj-dialog id="messageDialog" style="display:none" >
+	<div slot="header" class="oj-helper-clearfix">
+		Message
+	</div>
+	<div slot="body" class="has-error">
+	   <span data-bind="text: errormessage"></span> 
+	</div>
+	<div slot="footer" class="ok-btn-footer">
+	  <oj-button chroming="outlined" id="okButton" on-click="[[closeMsgDialog]]" style="font-size: small; height: 25px">  OK
+	  </oj-button>
+	</div>
+</oj-dialog>
+
+<!-- ERROR Confirmation Dialog box Starts-->
+<oj-dialog style="display:none;width: 60vw;" id="errorDialog" class="modalPopup errorModal" title="Error">
+    <div slot="body">
+            <div class="oj-flex oj-flex-items-pad confirmBox">
+                    <ul class="text-center" id="insErrorList">
+                        
+                    </ul>
+            </div>
+    </div>
+    <div slot="footer" class="modalFooter contentCenter">
+        <oj-button id="okBtn" class="defaultBtn width100" on-click="[[closeErrorDialog]]">Ok</oj-button>
+        
+    </div>
+</oj-dialog>
+
+<!-- ERROR Confirmation Dialog box Ends-->

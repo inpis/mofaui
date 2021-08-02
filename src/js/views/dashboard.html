@@ -1,0 +1,171 @@
+<!--
+ Copyright (c) 2014, 2018, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+ 
+<!-- Dialog box to execution process -->
+<oj-dialog style="display:none" id="loader" title="Loading....">
+	<div slot="body">
+	  <span class="loader"></span>
+	</div>
+</oj-dialog>
+
+<!-- Approve/Reject Comment Dialog Starts-->
+<oj-dialog style="display:none;width: 30vw;" id="commentDialog" class="Comment Dialog" title="" on-oj-open='[[onopen]]'>
+	<div slot="header" class="oj-helper-clearfix">
+	  <span id="commentTitle" class="oj-dialog-title">
+		  <span data-bind="text: commentTitle"></span>
+	  </span> 
+	</div>
+    <div slot="body">
+		<div class="oj-flex oj-flex-items-pad employeeDetails">
+			<div class="oj-sm-12 oj-md-12 oj-lg-12 oj-xl-12 oj-flex-item">
+				<oj-text-area id="text-area" value="{{comment}}" cols="10"></oj-text-area>
+			</div>
+		</div>   
+    </div>
+    <div slot="footer" class="modalFooter">
+        <oj-button id="submitApprovalBtn" class="defaultBtn" on-click="[[submitApproval]]"><span data-bind="text: btnsubmit"></span></oj-button>
+    </div>
+</oj-dialog>
+<!-- Approve/Reject Comment Dialog ends-->
+
+<!-- Dialog box to show error message-->
+<oj-dialog id="messageDialog" style="display:none" >
+	<div slot="header" class="oj-helper-clearfix">
+		Message
+	</div>
+	<div slot="body" class="has-error">
+	   <span data-bind="text: errormessage"></span> 
+	</div>
+	<div slot="footer" class="ok-btn-footer">
+	  <oj-button chroming="outlined" id="okButton" data-bind="click: function() { document.querySelector('#messageDialog').close();}" style="font-size: small; height: 25px">  OK
+	  </oj-button>
+	</div>
+</oj-dialog>
+
+<div class="oj-hybrid-padding">
+  <div class="dashBoardListView">
+    <div class="oj-flex oj-flex-items-pad">
+      <div class="oj-sm-12 oj-md-12 oj-lg-3 oj-xl-3 oj-flex-item notificationList">
+        <section>
+			<div class="listHeader"><h4><span data-bind="text: notification"></span></h4></div>
+			<oj-list-view id="notificationlistview" aria-label="list with static data" data="[[notificationdataprovider]]" item.renderer="[[oj.KnockoutTemplateUtils.getRenderer('server_template', true)]]" selection-mode="single">
+			<oj-paging-control id="paging" data='[[notificationdataprovider]]' page-size='6' slot='bottom'>
+			</oj-paging-control>
+			</oj-list-view>
+			
+			<script type="text/html" id="server_template">
+			<ul>
+                <li data-bind="attr: {id: $data['NotificationId']}">
+                    <div class="container">
+                        <p><span data-bind="text: Subject"></span></p>
+                    </div>
+                </li>
+            </ul>
+			</script>
+		
+        </section>
+
+
+      </div>
+      <div class="oj-sm-12 oj-md-12 oj-lg-6 oj-xl-6 oj-flex-item approvalList">
+          <section class="">
+            <div class="listHeader"><h4><span data-bind="text: pendingapp"></span></h4></div>
+				<oj-table id='pendingApprovalTable' class="pendingTable" aria-label='Pending Approvals Table' data='[[pendingappdataprovider]]' columns='{{columnArray}}' columns-default.sortable='none' style='width: 100%;'>
+				<oj-paging-control id="paging" data='[[pendingappdataprovider]]' page-size='6' slot='bottom'>
+                </oj-paging-control>
+				</oj-table>
+            <script type="text/html" id="action_header">
+                <th>Action</th>
+            </script>
+            <script type="text/html" id="action_buttons">
+                <td class="actionBtn">
+                    <oj-button id='Approve1' class="approveBtn" data-bind="click: function() {
+						$parent.submitApproval('APPROVED'); }"><span data-bind="text: $root.btnapprove"></span></oj-button>
+                    <oj-button id='Reject1' class="rejectBtn" data-bind="click: function() {
+						$parent.submitApproval('REJECTED'); }"><span data-bind="text: $root.btnreject"></span></oj-button>
+                </td>
+            </script>  
+          </section>
+
+
+      </div>
+      <div class="oj-sm-12 oj-md-12 oj-lg-3 oj-xl-3 oj-flex-item quickLink">
+        <section>
+            <div class="listHeader"><h4><span data-bind="text: quicklink"></span></h4></div>
+            <oj-list-view id="quickLinklistview" class="borderNone" aria-label="list with static data" selection-mode="multiple">
+              <ul>
+                  <li>
+                      <div class="container">
+                          <p><a href="javascript:void()" data-bind="click: function() {
+							oj.Router.rootInstance.go('leaves'); }"><span data-bind="text: leaverequest"></span></p></a>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="container">
+                        <p><a href="javascript:void()" data-bind="click: function() {
+							oj.Router.rootInstance.go('insurance');setTimeout(function(){ $('.insuranceUpperContainer,.grivanceContainer,.reimbursementContainer,.approveEmpMedicalInsuContainer').hide();
+        $('.insuranceLowerContainer ,.medicalInsuContainer').show(); localStorage.setItem('state','ins_init');}, 500); }"><span data-bind="text: insuranceTitle"></span></p></a>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="container">
+                        <p><a href="javascript:void()" data-bind="click: function() {
+							oj.Router.rootInstance.go('insurance');setTimeout(function(){ $('.insuranceUpperContainer,.medicalInsuContainer,.reimbursementContainer,.approveEmpMedicalInsuContainer').hide();
+        $('.insuranceLowerContainer ,.grivanceContainer').show(); localStorage.setItem('state','ins_gri'); }, 500); }"><span data-bind="text: grievanceTitle"></span></p></a>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="container">
+                        <p><a href="javascript:void()" data-bind="click: function() {
+							oj.Router.rootInstance.go('insurance');setTimeout(function(){ $('.insuranceUpperContainer,.medicalInsuContainer,.grivanceContainer,.approveEmpMedicalInsuContainer').hide();
+        $('.insuranceLowerContainer ,.reimbursementContainer').show(); localStorage.setItem('state','ins_reim');}, 500); }"><span data-bind="text: reimbursementTitle"></span></p></a>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="container">
+                        <p><a href="javascript:void()" data-bind="click: function() {
+							oj.Router.rootInstance.go('insurance');setTimeout(function(){ $('.insuranceUpperContainer,.medicalInsuContainer,.grivanceContainer,.reimbursementContainer').hide();
+        $('.insuranceLowerContainer ,.approveEmpMedicalInsuContainer').show(); localStorage.setItem('state','ins_app');}, 500); }"><span data-bind="text: approveEmpInsuranceTitle"></span></p></a>
+                      </div>
+                  </li>
+              </ul>
+          </oj-list-view>
+        </section>
+
+      </div>
+    </div>    
+    
+  </div>
+</div>
+
+<!-- Leave Details Dialog box Starts-->
+
+<oj-dialog style="display:none;width: 60vw;" id="leaveDetailModal" class="modalPopup leaveList" title="Leave Details">
+    <div slot="body">
+            <div class="oj-flex oj-flex-items-pad employeeDetails">
+                    <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item">
+                        <ul class="padding0">
+                          <li><span>Absence Status </span>:<span><b>Confirmed</b></span></li>
+                          <li><span>Absence Type </span>:<span><b>Annual Leave</b></span></li>
+                          <li><span>Decision Date </span>:<span><b>02/01/18</b></span></li>
+                          <li><span>Absence Category </span>:<span><b>Paid Leave</b></span></li>
+                          <li><span>Decision From </span>:<span><b></b></span></li>
+                        </ul>
+                    </div>
+                    <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item">
+                        <ul class="padding0">
+                            <li><span>Absence Leave Type </span>:<span><b>Without Ticket</b></span></li>
+                            <li><span>Start Date </span>:<span><b>02/01/18</b></span></li>
+                            <li><span>End Date </span>:<span><b>02/02/18</b></span></li>
+                            <li><span>Total Days </span>:<span><b>2</b></span></li>
+                            <li><span>Replace By </span>:<span><b>Ramchand Gore</b></span></li>
+                        </ul>
+                    </div>
+            </div>
+    </div>
+
+</oj-dialog>
+
+<!-- Leave Details Dialog box Ends-->

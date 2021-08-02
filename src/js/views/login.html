@@ -1,0 +1,85 @@
+<!--
+ Copyright (c) 2014, 2018, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+ 
+ <!-- Dialog box to execution process -->
+ <oj-dialog style="display:none" id="loader" title="Loading....">
+	<div slot="body">
+	  <span class="loader"></span>
+	</div>
+</oj-dialog>
+
+<!-- Dialog box to show error message rest url -->
+<oj-dialog id="invalidConfig">
+	<div slot="body" class="has-error">
+	   You must set configuration URL for web services.
+	</div>
+	<div slot="footer" class="ok-btn-footer">
+	  <oj-button id="okButton" chroming="outlined" data-bind="click: getConfigForm" style="font-size: small; height: 25px">  Set URL
+	  </oj-button>
+	</div>
+</oj-dialog>
+		
+<!-- Dialog box to show error message -->
+<oj-dialog style="display:none" id="invalidUser" title="Invalid User">
+	<div slot="body" class="has-error">
+	   You entered incorrect username or password.
+	</div>
+	<div slot="footer" class="ok-btn-footer">
+	  <oj-button chroming="outlined" id="okButton" data-bind="click: function() { document.querySelector('#invalidUser').close();}" style="font-size: small; height: 25px">  Retry
+	  </oj-button>
+	</div>
+</oj-dialog>
+
+<!-- Dialog box to setup Rest URL -->
+<oj-dialog id="setting" style="display:none;width: 40vw; height: 25vh;" title="Configuration Form">
+	<div slot="body" class="has-error">
+		<div id="form-container" class="oj-form-layout">
+			<div class="oj-form" >  
+				<div class="oj-flex oj-sm-only-flex-direction-column oj-flex-items-pad">  
+				  <div class="oj-sm-12 oj-md-5 oj-flex-item">
+					<oj-label for="url">Rest Service Url</oj-label>
+				  </div>
+				  <div class="oj-sm-12 oj-md-7 oj-flex-item">
+					<oj-input-text id="url" class="url-input" value="{{configURL}}" required="true" spellcheck="false" autocorrect="off" autocapitalize="off">
+					</oj-input-text>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>			
+	<div slot="footer" class="ok-btn-footer">
+	  <oj-button id="configURLButton" chroming="outlined" data-bind="click: configureURL" style="font-size: small; height: 25px"> Save
+	  </oj-button>
+	</div>
+</oj-dialog>
+<div class="oj-hybrid-padding">
+      <div class="loginContainer">
+          <div class="siteLogo">
+            <div class="logoImage"><img src="css/images/mofa_logo.png" title="Logo" alt="Logo" /></div>
+            <div class="siteTitle">Modern Self Services <br/> Application</div>
+          </div>
+          <div class="loginFields">
+                <oj-input-text id="user-input" value="{{username}}" placeholder="UserName" class="username" required></oj-input-text>
+                <oj-input-password id="password" value="{{password}}" placeholder="Password" class="password" required></oj-input-password>
+				<div class="SelectLang">
+					<oj-select-one id="langSelect" class="customDropdown" value="{{$root.lang}}" on-value-changed="[[valueChangeHandler]]" required>
+						<oj-option value="English">English</oj-option>
+						<oj-option value="Arabic">Arabic</oj-option>
+					</oj-select-one>
+				</div>
+				<div class="submitBtn">
+                  <oj-button id='submit' on-click='[[signIn]]'>Login</oj-button>
+				</div>
+          </div>
+		  <div class="oj-flex oj-flex-items-pad right">
+			<div class="oj-sm-12 oj-flex-item">
+			  <div class="configure-btn">
+				<span id="configureBtn" class="settingsIcon" data-bind="click: getConfigForm">
+				</span>
+			  </div>
+			</div>
+		  </div>
+      </div>
+</div>

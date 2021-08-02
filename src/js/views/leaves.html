@@ -1,0 +1,259 @@
+<!--
+ Copyright (c) 2014, 2018, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+ <!-- Dialog box to execution process -->
+<oj-dialog style="display:none" id="loader" title="Loading....">
+	<div slot="body">
+	  <span class="loader"></span>
+	</div>
+</oj-dialog>
+
+<!-- Dialog box to show error message-->
+<oj-dialog id="messageDialog" style="display:none" >
+	<div slot="header" class="oj-helper-clearfix">
+		Message
+	</div>
+	<div slot="body" class="has-error">
+	   <span data-bind="text: errormessage"></span> 
+	</div>
+	<div slot="footer" class="ok-btn-footer">
+	  <oj-button chroming="outlined" id="okButton" data-bind="click: function() { document.querySelector('#messageDialog').close();}" style="font-size: small; height: 25px">  OK
+	  </oj-button>
+	</div>
+</oj-dialog>
+
+
+<div class="oj-hybrid-padding">
+    <div class="dashBoardListView">
+      <div class="oj-flex oj-flex-items-pad">
+        <div class="oj-sm-12 oj-md-12 oj-lg-3 oj-xl-3 oj-flex-item notificationList">
+          <section>
+            <div class="listHeader"><h4><span data-bind="text: notification"></h4></div>
+			<oj-list-view id="notificationlistview" aria-label="list with static data" data="[[notificationdataprovider]]" item.renderer="[[oj.KnockoutTemplateUtils.getRenderer('server_template', true)]]" selection-mode="single">
+			<oj-paging-control id="paging" data='[[notificationdataprovider]]' page-size='6' slot='bottom'>
+			</oj-paging-control>
+			</oj-list-view>
+			
+			<script type="text/html" id="server_template">
+			<ul>
+                <li data-bind="attr: {id: $data['NotificationId']}">
+                    <div class="container">
+                        <p><span data-bind="text: Subject"></span></p>
+                    </div>
+                </li>
+            </ul>
+			</script>
+          </section>
+  
+  
+        </div>
+        <div class="oj-sm-12 oj-md-12 oj-lg-9 oj-xl-9 oj-flex-item leaveList">
+            <div class="oj-flex-bar oj-sm-align-items-center marginB10">
+              <h3 class="oj-flex-bar-start margin0"><span data-bind="text: leavesummary"></h3>
+              <div class="oj-flex-bar-end"><oj-button id='createLeave' class="defaultBtn" on-click="[[createLeave]]"><span data-bind="text: btncreate"></oj-button></div>
+            </div>  
+            <section class="employeeDetails">
+                <div class="oj-flex oj-flex-items-pad">
+                    <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item">
+                        <ul>
+                          <li><span data-bind="text: empname"></span>:<b><span data-bind="text: $root.fullname"></b></span></li>
+                          <!--<li><span data-bind="text: assignmentcategory"></span>:<b><span data-bind="text: $root.assignmentcategory"></span></b></li>-->
+                          <li><span data-bind="text: position"></span>:<b><span data-bind="text: $root.positionname"></span></b></li>
+                          <li><span data-bind="text: location"></span>:<b><span data-bind="text: $root.locationcode"></span></b></li>
+                        </ul>
+                    </div>
+                    <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item">
+                        <ul>
+                            <li><span data-bind="text: empno"></span>:<b><span data-bind="text: $root.employeenumber"></b></li>
+                            <li><span data-bind="text: grade"></span>:<b><span data-bind="text: $root.gradename"></b></li>
+                            <li><span data-bind="text: dept"></span>:<b><span data-bind="text: $root.businessgroupname"></b></li>
+                           
+                          </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="leaveTable">
+                <oj-table id="leaveTable" aria-label="Leave Table"
+					data='[[dataprovider]]'
+					display='grid'
+					columns='{{approveleaveColumnArray}}' width: 100%;>
+					<oj-paging-control id="pagingLeave" data='[[dataprovider]]' page-size='6' slot='bottom'>
+					</oj-paging-control>
+                </oj-table>
+            </section>
+        </div>
+      </div>    
+    </div>
+</div>
+
+<!-- Apply Leave Dialog box Starts-->
+<oj-dialog style="display:none;width: 50vw;" id="applyLeaveModal" class="modalPopup" title="">
+	<div slot="header" class="oj-helper-clearfix">
+	  <span id="dialogTitleId" class="oj-dialog-title">
+		  <span data-bind="text: applyleave"></span>
+	  </span> 
+	</div>
+    <div slot="body">
+		<div class="oj-flex oj-flex-items-pad">
+            
+            <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item marginB10">
+						<oj-label for="absence-type" class="customLabel"><span data-bind="text: abstype"></span></oj-label>
+						<oj-select-one id="absence-type" value="{{absencetypeval}}" on-value-changed="[[valueChangedHandler]]" class="customSelect customDropdown" options="{{leavetypedataprovider}}">
+						</oj-select-one>
+						
+				<div class="marginB10">
+					<oj-label for="absence-category" class="customLabel"><span data-bind="text: category"></span></oj-label>
+					<oj-input-text id="absence-category" class="customInput" value="Paid Leave" disabled="true"></oj-input-text>
+				</div>
+				<div class="marginB10">
+						<oj-label for="absence-leave-type" class="customLabel"><span data-bind="text: leavetype"></span></oj-label>
+						<oj-select-one id="absence-leave-type" class="customSelect customDropdown" value="{{absenceleavetypeval}}">
+							<oj-option value="Without Ticket">Without Ticket</oj-option>
+							<oj-option value="With Ticket">With Ticket</oj-option>
+						</oj-select-one>
+				</div>
+			</div>
+			<div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item marginB10 leavePolicy">
+                    <div class="leavePolicyText">
+                       <div class="annualLeave" dir="rtl">
+                            <p><b>إجازة الاعتيادية المدة:</b><br/>
+                            <span>36 يوم عن كل سنه من سنوات الخدمة</span></p>
+                            <p class="margin0"><b>الضوابط و الملاحظات :</b></p>    
+                            <ul>
+                                <li>راتب كامل</li>
+                                <li>يستحق الموظف اجازة سنوية لمدة 36 يوما عن كل سنة</li>
+                                <li>الحد الأدنى 5 أيام و الأعلى 90 يوم في السنه الواحدة</li>
+                                <li>لا يجوز تمديدها اكثر من مرة</li>
+                                <li>لا يجوز تأجيلها لأكثر من 3 سنوات وبما لا يقل عن 36 يوم</li>
+                                <li>يجوز للموظف الذي بلغت خدمته المحسوبة لغرض التقاعد (25) عاماً كحد أدنى أو بلغ من العمر (50) عاما فأكثر التمتع برصيده من الإجازات العادية المستحقة له على الا تتجاوز (120) يوماً خلال السنة الواحدة
+                                    </li>
+                                <li>في نهاية الخدمة يتم تعويضه عن 180 يوم كحد اقصى ، عدا حالات الوفاة و العجز الصحي فأنه يعوض عن كامل رصيده من الاجازات ، ومن استمر في الخدمة بعد بلوغه السن النظامية لا يعوض عن هذه السنوات</li>
+                                <li>العطلة الصيفية تعتبر بمثابة اجازة للعاملين في حقل التدريس</li>
+                                <li>لا يدخل في احتساب الاجازة العادية كلا من : الاجازة الاستثنائية ،كف اليد ، الادانة ، الاجازة الدراسية ، الاعارة ، الغياب بدون عذر ، المدة التي يقضيها في السجن ، ومدة الابتعاث و الايفاد الذي يتخلله اجازة لا تقل عن شهر</li>
+                                <li>جواز حسم أيام الغياب عن العمل من الاجازة العادية اذا قدم عذر تقبله الجهة اما اذا لم يكن له رصيد فتحسب غيابا بعذر لا يستحق عليه راتب ، ويتم جمع ساعات غياب الموظف و معاملتها وفق هذه القاعدة</li>    
+                                <li>اذا تمتع الموظف بإجازته العادية في سنة التجربة تمتد التجربة بقدر فترات الغياب</li>
+                                <li>لا يجوز قطع اجازة الموظف و تكليفه بعمل متى ما منحت له</li>
+                                <li>اذا تخللت الاجازة العادية عطلة العيد اعتبرت العطلة جزء من الاجازة العادية</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="educationLeave" dir="rtl">
+                                <p><b>اجازة دراسية:المدة:</b><br/>
+                                <span>المدة اللازمة للحصول على الدرجة العلمية</span></p>
+                                <p class="margin0"><b>الضوابط و الملاحظات :</b></p>    
+                                <ul>
+                                    <li>بدون راتب</li>
+                                    <li>ان يكون يحمل مؤهل لا يقل عن الثانوية العامة او ما يعادلها</li>
+                                    <li>ان يكون امضى فى الخدمة ثلاث سنوات و لا يقل تقويم ادائه الوظيفى عن تقدير جيد</li>
+                                    <li>ان يكون لموضوع دراسته علاقة بالعمل فى الجهة التى يعمل بها</li>
+                                    <li>اذا انقطع عن الدراسة او تعثر يجوز للجهة قطع الاجازة</li>
+                                    <li>يجوز للموظف قطع اجازته الدراسية و العودة لعمله شرط موافقة الجهة</li>
+                                    <li>يجوز للموظف قطع اجازته الدراسية و العودة لعمله شرط موافقة الجهة</li>
+                                    <li>اذا لم يتحقق الغرض الذى من اجله منحت الاجازة الدراسية فلا تحتسب مدة الاجازة لاغراض التعيين او الترقية</li>
+                                    <li>يدخل ضمن هذه الاجازة المدة اللازمة للتاهيل لغويا و فنيا قبل الدراسة</li>
+                                </ul>
+                            </div>  
+                    </div>
+                    
+            </div>
+				<div class="oj-sm-12 oj-md-3 oj-lg-3 oj-xl-3 oj-flex-item marginB10">
+						<oj-label for="duration-start" class="customLabel"><span data-bind="text: duration"></span></oj-label>
+						<oj-input-date id="duration-start" class="customDatepicker startDate" converter=[[dateConverter]] value="{{startdateval}}" on-value-changed="[[dateChangedHandler]]"></oj-input-date>
+				</div>
+				<div class="oj-sm-12 oj-md-3 oj-lg-3 oj-xl-3 oj-flex-item marginB10">
+						<oj-label for="duration-start" class="customLabel visibilityHidden">Duration</oj-label>
+						<oj-input-date id="duration-end" class="customDatepicker endDate" converter=[[dateConverter]] value="{{enddateval}}"></oj-input-date>
+				</div>
+				<div class="oj-sm-12 oj-md-3 oj-lg-3 oj-xl-3 oj-flex-item marginB10" hidden>
+						<oj-label for="totalDay" class="customLabel"><span data-bind="text: total"></span></oj-label>
+						<oj-input-text id="totalDay" class="customInput" value="{{totaldays}}" disabled="true" required></oj-input-text>
+				</div>
+				<div class="oj-sm-12 oj-md-3 oj-lg-3 oj-xl-3 oj-flex-item marginB10" hidden>
+						<p><oj-button id="calculateBtn" class="defaultBtn" on-click="[[calculate]]" style="padding-top:30px">Calculate</oj-button></p>
+				</div>
+				<div class="oj-sm-12 oj-md-12 oj-lg-12 oj-xl-12 oj-flex-item">
+						<oj-label for="replaceBy" class="customLabel" ><span data-bind="text: replacedby"></span></oj-label>
+						<oj-select-one id="replaceBy" value="{{replacedbyval}}" class="customSelect customDropdown" options="{{replacedbylist}}" >	
+						</oj-select-one>
+				</div>
+		
+        </div>   
+    </div>
+    <div slot="footer" class="modalFooter">
+      <oj-button id="nextBtn" class="defaultBtn" on-click="[[next]]"><span data-bind="text: btnnext"></span></oj-button>
+    </div>
+</oj-dialog>
+<!-- Apply Leave Dialog box Ends-->
+
+<!-- Apply Leave Next Dialog box Starts-->
+
+<oj-dialog style="display:none;width: 60vw;" id="applyLeaveNextModal" class="modalPopup leaveList" title="">
+	<div slot="header" class="oj-helper-clearfix">
+	  <span id="applyLeaveTitle" class="oj-dialog-title">
+		  <span data-bind="text: applyleave"></span>
+	  </span> 
+	</div>
+    <div slot="body">
+            <div class="oj-flex oj-flex-items-pad employeeDetails">
+                    <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item">
+                        <ul class="padding0">
+                          <li><span data-bind="text: abstype"></span>:<b><span data-bind="text: absencetypeval"></span></b></li>
+						  <li><span data-bind="text: category"></span>:<span><b>Paid Leave</b></span></li>
+						  <li><span data-bind="text: leavetype"></span>:<b><span data-bind="text: absenceleavetypeval"></span></b></li>
+                          <li><span data-bind="text: startdate"></span>:<b><span data-bind="text: startdateval2"></span></b></li>
+                          <li><span data-bind="text: enddate"></span>:<b><span data-bind="text: enddateval2"></span></b></li>
+                        </ul>
+                    </div>
+                    <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-6 oj-flex-item">
+                        <ul class="padding0">
+                            <li><span data-bind="text: total"></span>:<b><span data-bind="text: totaldays"></span></b></li>
+                            <li><span data-bind="text: replacedby"></span>:<b><span data-bind="text: replacedbyname"></span></b></li>
+                        </ul>
+                    </div>
+            </div>
+            <div class="oj-flex oj-flex-items-pad">
+                <div class="oj-sm-12 oj-md-12 oj-lg-12 oj-xl-12 oj-flex-item leaveTable">
+                    <h3 class="margin0 marginB10"><span data-bind="text: approver"></span></h3>
+                    <oj-table id="ApproverleaveTable" aria-label="Approvers"
+                                                data='[[approveleavedataprovider]]'
+                                                display='grid' 
+                                                columns='{{approvercolumnarray}}'
+                                                scroll-policy='loadMoreOnScroll'
+                                                scroll-policy-options='{"fetchSize": 10}'
+                                                >
+                    </oj-table>
+                </div>    
+            </div>    
+    </div>
+    <div slot="footer" class="modalFooter">
+        <oj-button id="submitBtn" class="defaultBtn" on-click="[[submit]]"><span data-bind="text: btnsubmit"></span></oj-button>
+        <oj-button id="backBtn" class="defaultBtn BlueBtn marginl15" data-bind="click: function() {
+            document.querySelector('#applyLeaveNextModal').close();
+            document.querySelector('#applyLeaveModal').open();
+        }"><span data-bind="text: btnback"></span></oj-button>
+    </div>
+</oj-dialog>
+
+<!-- Apply Leave Next Dialog box Ends-->
+
+<!-- Confirmation Dialog box Starts-->
+
+<oj-dialog style="display:none;width: 35vw;" id="confirmationModal" class="modalPopup" title="Confirmation">
+        <div slot="body">
+                <div class="oj-flex oj-flex-items-pad confirmBox">
+                        <div class="confirmImg"></div>
+                        <p><span data-bind="text: confirmmessage"></p>  
+                </div>
+                    
+        </div>
+        <div slot="footer" class="modalFooter contentCenter">
+            <oj-button id="okBtn" class="defaultBtn width100" data-bind="click: function() {
+                document.querySelector('#confirmationModal').close();
+            }">Ok</oj-button>
+            
+        </div>
+    </oj-dialog>
+    
+    <!-- Confirmation Dialog box Ends-->
+
