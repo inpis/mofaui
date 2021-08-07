@@ -1,7 +1,7 @@
 {
   "name": "mofaHrms",
   "version": "1.0.0",
-  "description": "An OJET web app",
+  "description": "An OJET web app.",
   "dependencies": {
     "@oracle/oraclejet": "~4.2.0"
   },
